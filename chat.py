@@ -2,7 +2,7 @@ from google import genai
 from google.genai import types 
 import pathlib 
 import streamlit as st 
-client = genai.Client(api_key="GEMINI_API_KEY")
+client = genai.Client(api_key="AIzaSyAqsO824olSm8O59bMry-b8cl_FXD39RIs")
 
 # Retrieve and encode the PDF byte
 filepath = pathlib.Path('data_1.pdf')
