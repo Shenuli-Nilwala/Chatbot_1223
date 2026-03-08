@@ -1,8 +1,34 @@
 from google import genai 
 from google.genai import types 
 import pathlib 
-import streamlit as st 
-client = genai.Client(api_key="AIzaSyAqsO824olSm8O59bMry-b8cl_FXD39RIs")
+import streamlit as st
+import base64
+
+# Function to set background
+def set_bg_local(image_file):
+    with open(image_file, "rb") as f:
+        encoded = base64.b64encode(f.read()).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpg;base64,{encoded}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Page config
+st.set_page_config(page_title="Chatbot", layout="wide")
+
+# Set background (use full path if needed)
+set_bg_local("macro-1.jpg")
+
+client = genai.Client(api_key="AIzaSyB44_iR4THIU0_oLs0RqT7YnAUBGbHqqBc")
 
 # Retrieve and encode the PDF byte
 filepath = pathlib.Path('data_1.pdf')
