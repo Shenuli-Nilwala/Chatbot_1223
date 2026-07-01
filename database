@@ -1,0 +1,39 @@
+SHOW DATABASES;
+CREATE DATABASE office;
+use office;
+show tables;
+
+
+
+CREATE TABLE department(
+Depno CHAR(3) PRIMARY KEY,
+Depname VARCHAR(50),
+Loc VARCHAR(50)
+);
+desc department;
+
+CREATE TABLE employee (
+Empno CHAR(4) primary key,
+Ename VARCHAR(50),
+Gen CHAR(1),
+Bsal DECIMAL(8,2),
+Jdate DATE,
+Depno CHAR(2),
+FOREIGN KEY (Depno) REFERENCES department (Depno)
+);
+
+desc employee;
+
+CREATE TABLE employee1 (
+Empno CHAR(4) primary key,
+Ename VARCHAR(50),
+Gen CHAR(1),
+Bsal DECIMAL(8,2),
+Jdate DATE,
+Depno CHAR(2)
+);
+
+desc employee1;
+ALTER TABLE employee1
+ADD CONSTRAINT fk_depno
+FOREIGN KEY (Depno) REFERENCES department (Depno);
