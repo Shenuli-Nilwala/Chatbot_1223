@@ -1,0 +1,35 @@
+CREATE DATABASE test;
+USE test;
+
+CREATE TABLE employee (
+Empno CHAR(4) PRIMARY KEY,
+Ename VARCHAR(50),
+Gen CHAR(1),
+Bsal DECIMAL(8,2),
+Jdate date);
+
+insert into employee(Empno, Ename, Gen, Bsal, Jdate) values ('001', 'Kamal','M', 40000, '2022-04-03');
+insert into employee(Empno, Ename, Gen, Bsal, Jdate) values ('002', 'Nimal', 'M', 45500.00, '2024-04-03');
+
+insert into employee(Empno, Ename, Gen, Bsal, Jdate)
+values ('003', 'Amali','F', 50000, '2011-11-11'), ('004', 'Sama','F', 55000, '2022-08-24');
+insert into employee(Empno, Ename, Gen, Bsal, Jdate) values ('005', 'Anu', 'F', 75500.00, '2014-04-14');
+select * from employee;
+
+set SQL_SAFE_UPDATEs = 0;
+UPDATE employee
+SET
+Ename = 'Sama'
+WHERE 
+Empno = 'Nimali';
+
+UPDATE employee
+SET
+Ename = 'Amal',
+Bsal = 45000
+WHERE
+Empno = '001';
+
+DELETE FROM employee
+WHERE
+Ename = 'Anu';
