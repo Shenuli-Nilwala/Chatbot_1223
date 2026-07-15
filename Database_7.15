@@ -1,0 +1,69 @@
+SHOW DATABASES;
+CREATE DATABASE COFFEESHOP;
+USE COFFEESHOP;
+SHOW tables;
+
+CREATE TABLE products(
+product_id INT AUTO_INCREMENT PRIMARY KEY,
+Product_name VARCHAR(100),
+price DECIMAL(6,2),
+coffee_origin VARCHAR(100)
+);
+
+CREATE TABLE customers(
+customer_id INT AUTO_INCREMENT PRIMARY KEY,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+gender  ENUM("Male","Female"),
+phone_number CHAR(10)
+);
+
+CREATE TABLE orders(
+order_id INT AUTO_INCREMENT PRIMARY KEY,
+customer_id INT,
+order_time DATETIME,
+FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
+);
+
+create table product_order(
+order_id INT,
+product_id INT,
+PRIMARY KEY (order_id, product_id),
+FOREIGN KEY (order_id) REFERENCES orders (order_id),
+FOREIGN KEY (product_id) REFERENCES products (product_id)
+);
+
+desc products;
+desc customers;
+desc orders;
+desc product_order;
+
+insert into products(Product_name, price, coffee_origin)
+values ('ESPRESSO', 2.50, 'BRAZIL'),
+('MACCHIATO', 3.00, 'BRAZIL'),
+('CAPPUCCINO', 3.50, 'COSTA RICA'),
+('LATTE', 3.50, 'INDONICIA'),
+('AMERICANO', 3.00,'BRAZIL'),
+('FLAT WHITE', 3.50, 'INDONISIA'),
+('FILTER', 3.00, 'INDIA');
+
+select * from products;
+
+UPDATE products
+SET
+coffee_origin = 'SRI LANKA'
+WHERE
+Product_name = 'FILTER';
+
+UPDATE products
+SET
+PRICE = 3.25,
+coffee_origin = 'ITHIOPIA'
+WHERE
+Product_name = 'AMERICANO';
+
+UPDATE products
+SET
+coffee_origin = 'COLOMBIA'
+WHERE
+coffee_origin = 'BRAZIL';
